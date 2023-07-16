@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Tales</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css">
+  <style>
+    #map {
+      width: 150%;
+      height: 400px;
+    }
+    .post-tooltip {
+      position: absolute;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a href="#" class="navbar-brand">Travel Tales</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Posts</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Create Post</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Register</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h1 class="text-[9.5vmin] md:text-[10.5vmin] tracking-tight leading-[0.9] font-bold text-gray-900">
+            <span class="block">Connecting Travelers</span>
+            <span class="block"><span class="text-pink-900 font-extrabold">Worldwide</span>
+            </span>
+          </h1>
+          <p class="lead">Share your travel experiences, discover new destinations, and connect with fellow travelers.</p>
+          <a href="#" class="btn btn-outline-danger btn-lg">Join Now </a>
+        </div>
+        <div class="col-md-7 mt-4">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2 class="text-center">Why Choose Travel Tales?</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="bi bi-person-circle"></i>
+            </div>
+            <h3 class="text-center">Personalized Profiles</h3>
+            <p>Create a unique travel profile to showcase your adventures and connect with like-minded travelers.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="bi bi-compass"></i>
+            </div>
+            <h3 class="text-center">Discover & Explore</h3>
+            <p>Explore new travel destinations, get inspired by others' stories, and find hidden gems around the world.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="bi bi-people"></i>
+            </div>
+            <h3 class="text-center">Connect & Share</h3>
+            <p>Connect with a vibrant community of travelers, share your own experiences, and get valuable travel tips.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials bg-light">
+    <div class="container">
+      <h2 class="text-center">What Our Users Say</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="testimonial">
+            <img src="{% static 'images/SamLevinson.jpg' %}" alt="name" class="img-fluid rounded-circle">
+            <blockquote class="blockquote">
+              <p>"Travel Tales has transformed the way I document and share my journeys. It's a fantastic platform to connect with fellow travelers and get inspired!"</p>
+              <footer class="blockquote-footer">Sam Levinson</footer>
+            </blockquote>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="testimonial">
+            <img src="{% static 'images/AmySchumer.jpg' %}" alt="name" class="img-fluid rounded-circle">
+            <blockquote class="blockquote">
+              <p>"I've discovered incredible places and made lifelong friends through Travel Tales. It's a must-have for any travel enthusiast!"</p>
+              <footer class="blockquote-footer">Amy Schumer</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-light">
+    <div class="container">
+      <ul class="list-inline text-center">
+        <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        <li class="list-inline-item"><a href="#">About Us</a></li>
+        <li class="list-inline-item"><a href="#">Contact</a></li>
+      </ul>
+      <div class="text-center">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    // Map initialization
+    var map = L.map('map').setView([30, 60], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Example markers
+    var markers = [
+      {
+        lat: 51.5074,
+        lng: -0.1278,
+        title: "London, United Kingdom",
+        author: "Daniel, 23",
+        content: "Wandering through London's historic lanes, I felt like a time traveler immersed in a fascinating tale. The regal elegance of Buckingham Palace and the enchanting Tower Bridge awakened my imagination. From the timeless beauty of Hyde Park to the artistic wonders of the Tate Modern, this city resonated with a rich blend of tradition and innovation. London, your majestic landmarks and cultural treasures left an indelible mark on my soul."
+      },
+      {
+        lat: 40.7128,
+        lng: -74.0060,
+        title: "New York City, USA",
+        author: "Anel, 30",
+        content: "Lost in the rhythm of New York's vibrant streets, I discovered a city that never sleeps and always surprises. From the dazzling lights of Times Square to the iconic skyline, every corner revealed a new story. Central Park's tranquility provided a much-needed escape, while the bustling neighborhoods offered a taste of diverse cultures. New York, you stole my heart with your endless energy and undeniable charm."
+      },
+      {
+        lat: 1.3521,
+        lng: 103.8198,
+        title: "Singapore",
+        author: "Mark, 20",
+        content: "Venturing into Singapore's urban oasis, I was mesmerized by the fusion of nature and modernity. Gardens by the Bay transported me to a futuristic wonderland, while the bustling streets of Chinatown tantalized my taste buds with exotic flavors. Marina Bay Sands' stunning skyline view took my breath away, and the vibrant street markets captivated my senses. Singapore, your harmonious blend of innovation and tradition created an unforgettable experience."
+      }
+    ];
+
+    // Add markers to the map
+    markers.forEach(function(marker) {
+      var markerIcon = L.icon({
+        iconUrl: 'static/markers/pin.png',
+        iconSize: [30, 30],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+      });
+
+      var popupContent = "<strong>" + marker.title + "</strong><br>" + marker.author + "</strong><br>" + marker.content;
+
+      var leafletMarker = L.marker([marker.lat, marker.lng], { icon: markerIcon })
+        .addTo(map)
+        .bindPopup(popupContent);
+
+      leafletMarker.on('mouseover', function() {
+        leafletMarker.openPopup();
+      });
+
+      leafletMarker.on('mouseout', function() {
+        leafletMarker.closePopup();
+      });
+    });
+  </script>
+</body>
+</html>

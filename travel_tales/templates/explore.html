@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore | Travel Tales</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a href="#" class="navbar-brand">Travel Tales</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link">Explore</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Posts</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Register</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="explore">
+    <div id="map"></div>
+    <div class="container">
+      <h2>Explore New Destinations</h2>
+      <div class="destination">
+        <img src="destination1.jpg" alt="Destination 1" class="destination-image">
+        <div class="destination-details">
+          <h3 class="destination-title">Paris, France</h3>
+          <p class="destination-description">Experience the romance and charm of the City of Love. Discover the iconic Eiffel Tower, stroll along the Seine River, and indulge in delicious French cuisine.</p>
+          <a href="#" class="btn btn-primary">View More</a>
+        </div>
+      </div>
+      <div class="destination">
+        <img src="destination2.jpg" alt="Destination 2" class="destination-image">
+        <div class="destination-details">
+          <h3 class="destination-title">Bali, Indonesia</h3>
+          <p class="destination-description">Escape to the tropical paradise of Bali. Immerse yourself in stunning beaches, lush rice terraces, and ancient temples. Experience tranquility like never before.</p>
+          <a href="#" class="btn btn-primary">View More</a>
+        </div>
+      </div>
+      <div class="destination">
+        <img src="destination3.jpg" alt="Destination 3" class="destination-image">
+        <div class="destination-details">
+          <h3 class="destination-title">Tokyo, Japan</h3>
+          <p class="destination-description">Dive into the vibrant and futuristic city of Tokyo. Discover a unique blend of tradition and modernity, explore ancient temples, and savor authentic Japanese cuisine.</p>
+          <a href="#" class="btn btn-primary">View More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories">
+    <div class="container">
+      <h2>Inspiring Travel Stories</h2>
+      <div class="story">
+        <img src="story1.jpg" alt="Story 1" class="story-image">
+        <div class="story-details">
+          <h3 class="story-title">A Journey Through South America</h3>
+          <p class="story-excerpt">Embark on an unforgettable adventure across the vibrant landscapes of South America. From the breathtaking beauty of Patagonia to the ancient ruins of Machu Picchu, this journey will leave you in awe.</p>
+          <p class="story-author">By: Emma Johnson</p>
+        </div>
+      </div>
+      <div class="story">
+        <img src="story2.jpg" alt="Story 2" class="story-image">
+        <div class="story-details">
+          <h3 class="story-title">Discovering Hidden Gems in Europe</h3>
+          <p class="story-excerpt">Uncover the hidden gems of Europe's enchanting cities and charming countryside. From the fairytale-like beauty of Prague to the breathtaking cliffs of the Amalfi Coast, get ready for a journey of discovery.</p>
+          <p class="story-author">By: James Anderson</p>
+        </div>
+      </div>
+      <div class="story">
+        <img src="story3.jpg" alt="Story 3" class="story-image">
+        <div class="story-details">
+          <h3 class="story-title">A Spiritual Retreat in Southeast Asia</h3>
+          <p class="story-excerpt">Embark on a soul-stirring spiritual retreat in the serene landscapes of Southeast Asia. From the ancient temples of Angkor Wat to the tranquil beaches of Bali, find inner peace and rejuvenation.</p>
+          <p class="story-author">By: Sarah Thompson</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="community">
+    <div class="container">
+      <h2>Join the Travel Tales Community</h2>
+      <p>Share your own travel stories, connect with fellow travelers, and get inspired by the experiences of others. Join our vibrant community today!</p>
+      <a href="#" class="btn btn-primary">Sign Up</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <ul class="footer-links">
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([40, 60], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+  </script>
+</body>
+</html>
